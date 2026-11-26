@@ -1,11 +1,10 @@
 package tn.esprit.nouaiguimarouen4ssa16.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -15,11 +14,16 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Equipement {
+public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idEquipement;
-    String libelle;
+    long idMaintenance;
+    LocalDate dateDebut;
+    LocalDate dateFin;
+    String description;
+    @ManyToOne
+    Vehicule vehicule;
+
 
 
 }

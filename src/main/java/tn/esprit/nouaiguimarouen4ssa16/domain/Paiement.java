@@ -1,9 +1,6 @@
 package tn.esprit.nouaiguimarouen4ssa16.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,11 +14,19 @@ import java.time.LocalDate;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Contrat {
+public class Paiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idContrat;
-    LocalDate dateSignature;
-    int MontantTotal;
-    Boolean valide;
+    long idPaiement;
+    String montant;
+    LocalDate datePaiement;
+    @Enumerated(value = EnumType.STRING)
+
+    ModePaiement modePaiement;
+
+    @ManyToOne
+    Contrat contrat;
+
+
+
 }

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
@@ -14,15 +12,16 @@ import java.time.LocalDate;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Reservation {
+public class Employe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idReservation;
-    LocalDate dateDebut;
-    LocalDate dateFin;
+    long idEmployee;
+    String nom;
+    String prenom;
+
+
     @Enumerated(value = EnumType.STRING)
-
-    StatutReservation statut;
-
-
+    RoleEmploye roleEmploye;
+    @ManyToOne
+    Agence agence;
 }

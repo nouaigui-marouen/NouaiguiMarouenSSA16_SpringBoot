@@ -1,11 +1,13 @@
 package tn.esprit.nouaiguimarouen4ssa16.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,4 +25,10 @@ public class Agence {
     String ville;
     String adresse;
     String telephone;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "agence", fetch = FetchType.EAGER)
+    List<Vehicule> vehicules;
+    @OneToMany
+    Set<Employe> employes;
+
 }

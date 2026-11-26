@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -14,19 +15,19 @@ import java.math.BigDecimal;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Vehicule {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idVehicule;
-    String immatriculation;
-    String marque;
-    String modele;
+    Long idClient;
+    String nom;
+    String prenom;
+    String email;
+    String telephone;
+    String numPermis;
+    LocalDate dateInscription;
 
-    @Enumerated(value = EnumType.STRING)
-    CategorieVehicule categorie;
+    @OneToMany (mappedBy = "client")
+    Set<Reservation> reservations;
 
-    BigDecimal tarifJournalier;
 
-    @Enumerated(value = EnumType.STRING)
-    StatutVehicule statut;
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -14,15 +14,13 @@ import java.time.LocalDate;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Paiement {
+public class Equipement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idPaiement;
-    String montant;
-    LocalDate datePaiement;
-    @Enumerated(value = EnumType.STRING)
-
-    ModePaiement modePaiement;
+    long idEquipement;
+    String libelle;
+    @ManyToMany(mappedBy = "equipements")
+    Set<Vehicule> vehicules;
 
 
 

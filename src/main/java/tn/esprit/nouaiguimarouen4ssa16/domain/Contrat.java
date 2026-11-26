@@ -1,13 +1,11 @@
 package tn.esprit.nouaiguimarouen4ssa16.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,13 +15,19 @@ import java.time.LocalDate;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Maintenance {
+public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idMaintenance;
-    LocalDate dateDebut;
-    LocalDate dateFin;
-    String description;
+    long idContrat;
+    LocalDate dateSignature;
+    int MontantTotal;
+    Boolean valide;
+
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
+    Set<Paiement> paiements;
+
+    @OneToOne(mappedBy = "contrat")
+    Reservation reservation;
 
 
 }
